@@ -1,0 +1,72 @@
+<html lang="es">
+
+    <head>
+        <title>Ejemplo 0 Cesium básico</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="autor" />
+        <meta name="description" content="descripción página">
+        <meta name="robots" content="index,follow">
+        <script src="https://cesiumjs.org/releases/1.53/Build/Cesium/Cesium.js"></script>
+        <link href="https://cesiumjs.org/releases/1.53/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+        <style>
+            #map {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                overflow: hidden;
+                padding: 0;
+            }
+    
+            body {
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+                height: 100%;
+            }
+        </style>
+        <script>
+            function Init() {
+                Cesium.Ion.defaultAccessToken =
+                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkNDY2MGI3OC00NzVmLTQ2OWItYWFjYy01YmIzODQxYmY2OGEiLCJpZCI6NzQ3MSwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTU0OTQ3MTgzMH0.GyTVLiWF86smMeqWonZMmcm296lo-38QqhCNPAzHIIo';
+                map = new Cesium.Viewer('map', {
+    
+                    imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
+                        url: '//services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/',
+                    }),
+    
+                    timeline: false,
+                    navigationHelpButton: true,
+                    scene3DOnly: true,
+                    fullscreenButton: true,
+                    baseLayerPicker: false,
+                    homeButton: false,
+                    infoBox: true,
+                    sceneModePicker: false,
+                    animation: false,
+                    geocoder: true,
+                    vrButton: true,
+                    sceneMode: Cesium.SceneMode.SCENE3D,
+                    terrainProvider: Cesium.createWorldTerrain()
+    
+                });
+    
+    
+                map.camera.flyTo({
+                    destination: Cesium.Cartesian3.fromDegrees(2.1806, 41.4003, 15000),
+                    orientation: {
+                        pitch: Cesium.Math.toRadians(-45.0)
+                    },
+                });
+            };
+        </script>
+    </head>
+    
+    <body onload="Init()">
+        <div id="map"></div>
+    </body>
+    
+    </html>
